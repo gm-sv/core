@@ -19,8 +19,7 @@ boxdraw.AddRow(BoxName, BoxName)
 boxdraw.AddRow(BoxName)
 
 -- The rest
-IncludeShared("includes/extensions/gmsv/error.lua")
-IncludeShared("includes/extensions/gmsv/string.lua")
+IncludeShared("gmsv_core/load.lua")
 
 boxdraw.AddRow(BoxName, "%u %s", gm_sv_ModuleCount, string.Plural("Module", gm_sv_ModuleCount))
 boxdraw.AddRow(BoxName, "%u %s", gm_sv_ExtensionCount, string.Plural("Extension", gm_sv_ExtensionCount))
