@@ -76,10 +76,10 @@ function string.ToIndex(self, UseRawGet)
 	end
 end
 
-function string.Plural(Text, Amount, Suffix)
+function string.Plural(self, Amount, Suffix)
 	if Amount == 1 then
-		return Text
+		return self
 	else
-		return Text .. (Suffix or "s")
+		return self .. (Suffix or "s")
 	end
 end
