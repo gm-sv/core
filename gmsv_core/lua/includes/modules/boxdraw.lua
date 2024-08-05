@@ -6,6 +6,7 @@ local isstring = isstring
 local table_insert = table.insert
 local math_max = math.max
 local math_floor = math.floor
+local Format = Format
 local string_rep = string.rep
 
 module("boxdraw")
@@ -16,11 +17,11 @@ function Create(Identifier)
 	BoxList[Identifier] = {}
 end
 
-function AddRow(Identifier, Text)
+function AddRow(Identifier, Text, ...)
 	local Data = Text
 
 	if isstring(Text) then
-		Data = string_Trim(Text)
+		Data = string_Trim(Format(Text, ...))
 	else
 		Data = false
 	end
