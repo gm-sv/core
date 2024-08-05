@@ -5,7 +5,6 @@ local string_Trim = string.Trim
 local isstring = isstring
 local table_insert = table.insert
 local math_max = math.max
-local math_floor = math.floor
 local Format = Format
 local string_rep = string.rep
 
