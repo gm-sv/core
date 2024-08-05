@@ -1,8 +1,16 @@
 MsgN("gm_sv Core Initialization")
 
+-- Keep my sanity
+AddCSLuaFile("includes/extensions/gmsv/include.lua")
+
+include("includes/extensions/gmsv/include.lua")
+
+-- Normal stuff
 AddCSLuaFile("includes/modules/boxdraw.lua")
 
-include("includes/modules/boxdraw.lua")
+IncludeShared("includes/extensions/gmsv/error.lua")
+
+require("boxdraw")
 
 boxdraw.Create("test")
 	boxdraw.AddRow("test", "hello world")
