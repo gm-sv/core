@@ -35,8 +35,6 @@ if SERVER then
 elseif CLIENT then
 	-- LocalPlayer isn't valid in player_activate, sadly
 	hook.Add("InitPostEntity", "PlayerRNQ", function()
-		g_bLocalPlayerReliableStream = true
-
 		LocalPlayer().m_bEstablishedReliable = true
 		hook.Run("OnPlayerReliableStream", LocalPlayer(), CurTime())
 	end)
