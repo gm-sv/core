@@ -29,4 +29,4 @@ boxdraw.Draw("gm_sv Core Initialization")
 gm_sv_ModuleCount = nil
 gm_sv_ExtensionCount = nil
 
-AddCSLuaFile = TheRealAddCSLuaFile
+AddCSLuaFile = TheRealAddCSLuaFile or AddCSLuaFile

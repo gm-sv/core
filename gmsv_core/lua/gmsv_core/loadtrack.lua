@@ -2,7 +2,7 @@ local string_find = string.find
 
 -- Where's that detour module when you need it
 -- A little overboard just for a message almost nobody will see, eh?
-TheRealAddCSLuaFile = AddCSLuaFile
+TheRealAddCSLuaFile = TheRealAddCSLuaFile or AddCSLuaFile
 
 function AddCSLuaFile(Path)
 	if string_find(Path, "includes/extensions") then
