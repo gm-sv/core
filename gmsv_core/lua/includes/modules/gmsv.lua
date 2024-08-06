@@ -46,3 +46,7 @@ function EndModule()
 
 	setfenv(2, _G)
 end
+
+function FindModule(Name)
+	return ModuleList[string.ToPascalCase(Name)]
+end
