@@ -23,6 +23,8 @@ function StartModule(Name)
 	NewModule:SetName(string.ToPascalCase(Name))
 	NewModule:Initialize()
 
+	ModuleList[Module:GetName()] = NewModule
+
 	local Fenv = package.gmsv({ _M = NewModule })
 	setfenv(2, Fenv)
 
@@ -37,7 +39,6 @@ function EndModule()
 		return error("Tried to call EndModule outside of module context!")
 	end
 
-	ModuleList[Module:GetName()] = Module
 	Module:Ready()
 
 	setfenv(2, _G)
