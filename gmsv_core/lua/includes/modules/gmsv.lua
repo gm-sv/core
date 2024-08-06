@@ -20,13 +20,15 @@ function CreateConfigObject()
 end
 
 function StartModule(Name)
+	Name = string.ToPascalCase(Name)
+
 	local MODULE = FindMetaTable("gm_sv_Module")
 
 	local NewModule = setmetatable({}, MODULE)
-	NewModule:SetName(string.ToPascalCase(Name))
+	NewModule:SetName(Name)
 	NewModule:Initialize()
 
-	ModuleList[Module:GetName()] = NewModule
+	ModuleList[Name] = NewModule
 
 	local Fenv = package.gmsv({ _M = NewModule })
 	setfenv(2, Fenv)
