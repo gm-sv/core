@@ -1,6 +1,7 @@
 IncludeShared("includes/extensions/gmsv/error.lua")
 IncludeShared("includes/extensions/gmsv/function.lua")
 IncludeShared("includes/extensions/gmsv/math.lua")
+IncludeShared("includes/extensions/gmsv/msg.lua")
 IncludeShared("includes/extensions/gmsv/package.lua")
 IncludeShared("includes/extensions/gmsv/player.lua")
 IncludeShared("includes/extensions/gmsv/sql.lua")
