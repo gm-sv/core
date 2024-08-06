@@ -4,7 +4,7 @@ MODULE.__index = MODULE
 AccessorFunc(MODULE, "m_strName", "Name", FORCE_STRING)
 
 function MODULE:IsValid()
-	return istable(self.m_Config)
+	return IsValid(self.m_Config)
 end
 
 function MODULE:Initialize()
