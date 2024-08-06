@@ -46,9 +46,11 @@ function MODULE:HookConfig()
 end
 
 function MODULE:Ready()
-	if SERVER then
-		self:SetReady(true)
-		self:OnReady()
+	self:SetReady(true)
+	self:OnReady()
+
+	if self:GetEnabled() == nil then
+		self:SetEnabled(true)
 	end
 end
 

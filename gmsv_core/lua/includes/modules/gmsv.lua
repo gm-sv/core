@@ -50,7 +50,9 @@ function EndModule()
 		return error("Tried to call EndModule outside of module context!")
 	end
 
-	Module:Ready()
+	if SERVER then
+		Module:Ready()
+	end
 
 	setfenv(2, _G)
 end

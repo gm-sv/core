@@ -31,7 +31,6 @@ net.Receive("gmsv_module_config_sync", function()
 
 	-- Make sure it's ready
 	if not Module:GetReady() then
-		Module:SetReady(true)
-		Module:OnReady()
+		Module:Ready()
 	end
 end)
