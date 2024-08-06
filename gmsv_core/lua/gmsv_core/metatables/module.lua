@@ -1,6 +1,7 @@
 local MODULE = {}
 MODULE.__index = MODULE
 
+AccessorFunc(MODULE, "m_bReady", "Ready", FORCE_BOOL)
 AccessorFunc(MODULE, "m_strName", "Name", FORCE_STRING)
 
 function MODULE:IsValid()
@@ -8,8 +9,12 @@ function MODULE:IsValid()
 end
 
 function MODULE:Initialize()
+	self:SetReady(false)
+
 	self.m_Config = gmsv.CreateConfigObject()
 	self:HookConfig()
+
+	gmsv.FetchModuleConfig(self)
 end
 
 function MODULE:AddConfigHook(Key, Callback)
@@ -29,6 +34,10 @@ function MODULE:HookConfig()
 	local Config = self:GetConfig()
 
 	function Config:OnValueChanged(Key, OldValue, NewValue)
+		if SERVER then
+			gmsv.SaveModuleConfigValue(Module, Key, NewValue)
+		end
+
 		hook.Run("gmsv_ModuleConfigUpdate", Module, Key, OldValue, NewValue)
 	end
 
@@ -38,9 +47,8 @@ end
 
 function MODULE:Ready()
 	if SERVER then
+		self:SetReady(true)
 		self:OnReady()
-	else
-		MsgN("Waiting for config")
 	end
 end
 
