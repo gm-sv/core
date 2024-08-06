@@ -10,7 +10,7 @@ function net.WriteBlob(Blob)
 end
 
 function net.ReadBlob()
-	local LengthBitCount = net.ReadUInt(5) + 1
+	local LengthBitCount = net.ReadUInt(5) + 1 -- Make it 1-31 instead of 0-32
 	local Length = net.ReadUInt(LengthBitCount)
 	local Compressed = net.ReadData(Length)
 
