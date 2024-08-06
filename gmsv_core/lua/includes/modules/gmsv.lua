@@ -1,7 +1,10 @@
+local error = error
 local FindMetaTable = FindMetaTable
+local getfenv = getfenv
+local istable = istable
+local IsValid = IsValid
 local setfenv = setfenv
 local setmetatable = setmetatable
-local getfenv = getfenv
 
 module("gmsv", package.seeall)
 
