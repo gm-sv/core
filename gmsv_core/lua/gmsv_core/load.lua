@@ -22,3 +22,5 @@ IncludeShared("gmsv_core/metatables/config.lua")
 IncludeShared("gmsv_core/metatables/module.lua")
 
 AddCSLuaFile("includes/modules/gmsv.lua")
+
+g_bGMSVLoaded = true

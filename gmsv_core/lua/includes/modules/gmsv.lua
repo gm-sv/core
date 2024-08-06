@@ -1,3 +1,9 @@
+if not g_bGMSVLoaded then
+	-- Make sure to load it if we are required early (in autorun)
+	AddCSLuaFile("gmsv_core/init.lua")
+	include("gmsv_core/init.lua")
+end
+
 local error = error
 local FindMetaTable = FindMetaTable
 local getfenv = getfenv
