@@ -33,7 +33,7 @@ function MODULE:HookConfig()
 	end
 
 	-- Default hooks
-	self:AddConfigHook("Enabled", self.Hook_Enabled)
+	self:AddConfigHook("Enabled", self.ConfigHook_Enabled)
 end
 
 function MODULE:Ready()
@@ -62,7 +62,7 @@ function MODULE:SetEnabled(Status)
 end
 
 -- Hooks
-function MODULE:Hook_Enabled(Key, OldValue, NewValue)
+function MODULE:ConfigHook_Enabled(Key, OldValue, NewValue)
 	if NewValue then
 		self:OnEnabled()
 	else
