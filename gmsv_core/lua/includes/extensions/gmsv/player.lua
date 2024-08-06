@@ -1,10 +1,9 @@
 local PLAYER = FindMetaTable("Player")
 
 function PLAYER:CanReliablyNetwork()
-	if not self:IsValid() then return false end
-	if self:IsTimingOut() then return false end
+	if SERVER and self:IsTimingOut() then return false end
 
-	return self.m_bEstablishedReliable
+	return self.m_bHasReliableConnection
 end
 
 if SERVER then
@@ -22,7 +21,7 @@ if SERVER then
 		end
 
 		ReliableUIDs[Data.userid] = true
-		NewPlayer.m_bEstablishedReliable = true
+		NewPlayer.m_bHasReliableConnection = true
 
 		hook.Run("OnPlayerReliableStream", Player, CurTime())
 	end)
@@ -35,7 +34,7 @@ if SERVER then
 elseif CLIENT then
 	-- LocalPlayer isn't valid in player_activate, sadly
 	hook.Add("InitPostEntity", "PlayerRNQ", function()
-		LocalPlayer().m_bEstablishedReliable = true
+		LocalPlayer().m_bHasReliableConnection = true
 		hook.Run("OnPlayerReliableStream", LocalPlayer(), CurTime())
 	end)
 end
