@@ -49,7 +49,9 @@ function MODULE:Ready()
 	self:SetReady(true)
 	self:OnReady()
 
-	if self:GetEnabled() == nil then
+	if self:GetEnabled() then
+		self:OnEnabled()
+	elseif self:GetEnabled() == nil then
 		self:SetEnabled(true)
 	end
 end
