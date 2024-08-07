@@ -36,7 +36,7 @@ function StartModule(Name)
 
 	ModuleList[Name] = NewModule
 
-	local Fenv = package.gmsv({ _M = NewModule })
+	local Fenv = package.gmsv({ self = NewModule })
 	setfenv(2, Fenv)
 
 	return NewModule
@@ -44,7 +44,7 @@ end
 
 function EndModule()
 	local Fenv = getfenv(2)
-	local Module = Fenv._M
+	local Module = Fenv.self
 
 	if not istable(Module) or not IsValid(Module) then
 		return error("Tried to call EndModule outside of module context!")
