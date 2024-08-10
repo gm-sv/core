@@ -12,7 +12,10 @@ function MODULE:Initialize()
 	self:SetReady(false)
 
 	self.m_Config = gmsv.CreateConfigObject()
-	self:HookConfig()
+
+	if SERVER then
+		self:HookConfig()
+	end
 
 	gmsv.FetchModuleConfig(self)
 end
@@ -75,6 +78,8 @@ end
 
 -- Hooks
 function MODULE:ConfigHook_Enabled(Key, OldValue, NewValue)
+	if not self:GetReady() then return end
+
 	if NewValue then
 		self:OnEnabled()
 	else

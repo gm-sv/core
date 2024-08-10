@@ -13,6 +13,11 @@ net.Receive("gmsv_module_config_sync", function()
 
 	MsgDev("Received config update for '", Module:GetName(), "'")
 
+	-- Assume it wasn't hooked already
+	if not Module:GetReady() then
+		Module:HookConfig()
+	end
+
 	local Config = Module:GetConfig()
 
 	local NewConfigData = net.ReadBlob()
