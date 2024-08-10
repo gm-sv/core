@@ -5,3 +5,11 @@ function IncludeShared(Path)
 
 	include(Path)
 end
+
+function IncludeClient(Path)
+	if SERVER then
+		AddCSLuaFile(Path)
+	elseif CLIENT then
+		include(Path)
+	end
+end
