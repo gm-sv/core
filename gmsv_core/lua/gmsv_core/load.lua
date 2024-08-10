@@ -10,13 +10,10 @@ IncludeShared("includes/extensions/gmsv/string.lua")
 IncludeShared("includes/extensions/gmsv/timer.lua")
 IncludeShared("includes/extensions/gmsv/util.lua")
 
-if SERVER then
-	AddCSLuaFile("gmsv_core/sync/cl_module.lua")
+IncludeClient("includes/extensions/gmsv/panel.lua")
+IncludeClient("gmsv_core/sync/cl_module.lua")
 
-	include("gmsv_core/sync/sv_module.lua")
-elseif CLIENT then
-	include("gmsv_core/sync/cl_module.lua")
-end
+IncludeServer("gmsv_core/sync/sv_module.lua")
 
 IncludeShared("gmsv_core/metatables/config.lua")
 IncludeShared("gmsv_core/metatables/module.lua")
