@@ -29,6 +29,12 @@ local function HandleWrite(Requester)
 end
 
 net.Receive("gmsv_module_config_sync", function(_, Requester)
+	if Requester:GetSessionTime() < (Requester:Ping() / 1000) * 3 then -- Give them 3 seconds of ping time grace period
+		if not net.TestRateLimit(Requester, "gmsv_module_config_sync", 1) then
+			return MsgDev("Refusing config request from '", Requester:GetName(), "'")
+		end
+	end
+
 	local IsWrite = net.ReadBool()
 
 	if IsWrite then
