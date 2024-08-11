@@ -8,7 +8,7 @@ if SERVER then
 	AccessorFunc(PLAYER, "m_flConnectionTime", "ConnectionTime", FORCE_NUMBER)
 
 	function PLAYER:GetSessionTime()
-		return SysTime() - (Player:GetConnectionTime() or 0)
+		return SysTime() - (self:GetConnectionTime() or 0)
 	end
 end
 
