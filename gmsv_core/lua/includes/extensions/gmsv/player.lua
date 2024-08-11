@@ -18,6 +18,10 @@ function PLAYER:CanReliablyNetwork()
 	return self.m_bHasReliableConnection
 end
 
+function PLAYER:HasFullyLoaded()
+	return self.m_bHasFullyLoaded
+end
+
 if SERVER then
 	local ReliableUIDs = {}
 
@@ -45,10 +49,27 @@ if SERVER then
 			ReliableUIDs[Entity:UserID()] = nil
 		end
 	end)
+
+	hook.Add("StartCommand", "PlayerRNQ", function(Player, Command)
+		if Command:IsForced() then return end
+
+		if ReliableUIDs[Player:UserID()] then
+			Player.m_bHasFullyLoaded = true
+		end
+	end)
 elseif CLIENT then
 	-- LocalPlayer isn't valid in player_activate, sadly
 	hook.Add("InitPostEntity", "PlayerRNQ", function()
 		LocalPlayer().m_bHasReliableConnection = true
+
 		hook.Run("OnPlayerReliableStream", LocalPlayer(), CurTime())
+	end)
+
+	hook.Add("StartCommand", "PlayerRNQ", function(Player, Command)
+		if Command:IsForced() then return end
+
+		Player.m_bHasFullyLoaded = true
+
+		hook.Remove("StartCommand", "PlayerRNQ")
 	end)
 end
