@@ -3,6 +3,15 @@ local SysTime = SysTime
 
 local PLAYER = FindMetaTable("Player")
 
+-- Connection and Session times
+if SERVER then
+	AccessorFunc(PLAYER, "m_flConnectionTime", "ConnectionTime", FORCE_NUMBER)
+
+	function PLAYER:GetSessionTime()
+		return SysTime() - (Player:GetConnectionTime() or 0)
+	end
+end
+
 function PLAYER:CanReliablyNetwork()
 	if SERVER and self:IsTimingOut() then return false end
 
@@ -26,7 +35,6 @@ if SERVER then
 		ReliableUIDs[Data.userid] = true
 
 		NewPlayer:SetConnectionTime(SysTime())
-		NewPlayer:SetSessionTime(0)
 		NewPlayer.m_bHasReliableConnection = true
 
 		hook.Run("OnPlayerReliableStream", Player, CurTime())
@@ -43,18 +51,4 @@ elseif CLIENT then
 		LocalPlayer().m_bHasReliableConnection = true
 		hook.Run("OnPlayerReliableStream", LocalPlayer(), CurTime())
 	end)
-end
-
--- Connection and Session times
-if SERVER then
-	AccessorFunc(PLAYER, "m_flConnectionTime", "ConnectionTime", FORCE_NUMBER)
-	AccessorFunc(PLAYER, "m_flSessionTime", "SessionTime", FORCE_NUMBER)
-
-	local function UpdatePlayerSessionTime(Player)
-		-- CurTime and UnPredictedCurTime are inaccurate in this hook until InitPostEntity is called on client
-		Player:SetSessionTime(SysTime() - (Player:GetConnectionTime() or 0))
-	end
-
-	hook.Add("PlayerTick", "Player_SessionTime", UpdatePlayerSessionTime)
-	hook.Add("VehicleMove", "Player_SessionTime", UpdatePlayerSessionTime)
 end
