@@ -55,6 +55,8 @@ function EndModule()
 	end
 
 	setfenv(2, _G)
+
+	hook.Run("gmsv_ModuleRegistered", Module)
 end
 
 function FindModule(Name)
