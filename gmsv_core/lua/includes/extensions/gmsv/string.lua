@@ -83,3 +83,11 @@ function string.Plural(self, Amount, Suffix)
 		return self .. (Suffix or "s")
 	end
 end
+
+function string.PluralEither(self, Amount, Plural) -- "Entity" -> "Entities"
+	if Amount == 1 then
+		return self
+	else
+		return Plural
+	end
+end
