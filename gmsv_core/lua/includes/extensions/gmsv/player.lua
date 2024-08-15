@@ -41,7 +41,7 @@ if SERVER then
 		NewPlayer:SetConnectionTime(SysTime())
 		NewPlayer.m_bHasReliableConnection = true
 
-		hook.Run("OnPlayerReliableStream", Player, CurTime())
+		hook.Run("OnPlayerReliableStream", NewPlayer, CurTime())
 	end)
 
 	hook.Add("EntityRemoved", "PlayerRNQ", function(Entity)
