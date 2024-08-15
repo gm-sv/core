@@ -63,6 +63,16 @@ function FindModule(Name)
 	return ModuleList[string.ToPascalCase(Name)]
 end
 
+function RunOnRegistered(Name, Callback)
+	local Module = FindModule(Name)
+
+	if IsValid(Module) then
+		Callback(Module)
+	else
+		hook.Add("gmsv_ModuleRegistered", Format("%s-%p", Name, Callback), Callback)
+	end
+end
+
 -- Config sync stuff
 if SERVER then
 	local function EnsureSQL()
